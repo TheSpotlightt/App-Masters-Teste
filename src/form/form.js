@@ -53,6 +53,19 @@ const confirm = () => {
     });
 };
 
+const notFoundCEP = () => {
+    confirmAlert({
+        title: 'CEP não encontrado!',
+        message: 'Preencha manualmente o endereço.',
+        buttons: [
+            {
+                label: 'OK!'
+            }
+        ],
+        overlayClassName: "overlay-custom-class-name"
+    });
+};
+
 
 export default function RegisterForm () {
     const { register, handleSubmit } = useForm();
@@ -74,7 +87,7 @@ export default function RegisterForm () {
             setReadOnlyState(true)
         }).catch (error => {
             if (error) {
-                alert('CEP não encontrado!')
+                notFoundCEP()
                 setReadOnlyState(false)
             }
         })
@@ -118,7 +131,8 @@ export default function RegisterForm () {
                         type="text" 
                         placeholder="Nome" 
                         name="name" 
-                        autoComplete="true" 
+                        autoComplete="true"
+                        required={true} 
                         {
                             ...register('name')
                         }
@@ -132,6 +146,7 @@ export default function RegisterForm () {
                         placeholder="Email"
                         name="email"
                         autoComplete="true"
+                        required={true} 
                         {
                             ...register('email')
                         }
@@ -144,7 +159,7 @@ export default function RegisterForm () {
                         type="tel"
                         placeholder="Telefone"
                         name="phone"
-                        
+                        required={true} 
                         {...register('phone')}
                     />
                 </InputContainer>
@@ -155,6 +170,7 @@ export default function RegisterForm () {
                         type="tel"
                         placeholder="CEP"
                         name="addressZip"
+                        required={true} 
                         {
                             ...register('addressZip')
                         }
@@ -172,6 +188,7 @@ export default function RegisterForm () {
                         placeholder="Logradouro"
                         name="addressStreet"
                         autoComplete="true"
+                        required={true} 
                         {
                             ...register('addressStreet')
                         }
@@ -184,6 +201,7 @@ export default function RegisterForm () {
                         type="tel"
                         placeholder="Número"
                         name="addressNumber"
+                        required={true} 
                         {
                             ...register('addressNumber')
                         }
@@ -197,6 +215,7 @@ export default function RegisterForm () {
                         placeholder="Complemento"
                         name="addressComplement"
                         autoComplete="true"
+                        required={true} 
                         {
                             ...register('addressComplement')
                         }
@@ -211,8 +230,8 @@ export default function RegisterForm () {
                         placeholder="Bairro"
                         defaultValue={neighborhoodValue}
                         name="addressDistrict"
-                        
                         autoComplete="true"
+                        required={true} 
                         {
                             ...register('addressDistrict')
                         }
@@ -228,6 +247,7 @@ export default function RegisterForm () {
                         placeholder="Cidade"
                         name="addressCity"
                         autoComplete="true"
+                        required={true} 
                         {
                             ...register('addressCity')
                         }
@@ -243,6 +263,7 @@ export default function RegisterForm () {
                         placeholder="Estado"
                         name="addressState"
                         autoComplete="true"
+                        required={true} 
                         {
                             ...register('addressState')
                         }
